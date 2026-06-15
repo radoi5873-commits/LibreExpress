@@ -1,0 +1,18 @@
+{
+  "name": "LibreExpress - Livraison express à Dakar",
+  "short_name": "LibreExpress",
+  "description": "Réservez un coursier, estimez vos tarifs et suivez votre colis en temps réel à Dakar.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect fill='%234f46e5' rx='96' width='512' height='512'/%3E%3Ctext x='256' y='300' font-size='280' text-anchor='middle' fill='white'%3E%E2%9C%88%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+/* ==========================================================================
+   LibreExpress - Custom Animations & Styles
+   ========================================================================== */
+
+/* ----- Preloader ----- */
+.preloader-pulse {
+    animation: preloaderPulse 1.5s ease-in-out infinite;
+}
+.preloader-progress {
+    animation: preloaderBar 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes preloaderPulse {
+    0%, 100% { transform: rotate(-8deg) scale(1); }
+    50% { transform: rotate(-8deg) scale(1.12); }
+}
+@keyframes preloaderBar {
+    0% { width: 0%; }
+    60% { width: 70%; }
+    100% { width: 100%; }
+}
+#preloader.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ----- Scroll Reveal ----- */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+.scroll-reveal:nth-child(2) { transition-delay: 0.1s; }
+.scroll-reveal:nth-child(3) { transition-delay: 0.2s; }
+.scroll-reveal:nth-child(4) { transition-delay: 0.3s; }
+
+/* ----- Toast Notifications ----- */
+.toast {
+    pointer-events: auto;
+    animation: toastIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.toast.toast-exit {
+    animation: toastOut 0.3s ease forwards;
+}
+@keyframes toastIn {
+    from { opacity: 0; transform: translateX(100%) scale(0.95); }
+    to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes toastOut {
+    from { opacity: 1; transform: translateX(0) scale(1); }
+    to   { opacity: 0; transform: translateX(100%) scale(0.95); }
+}
+
+/* ----- Back to Top ----- */
+#back-to-top.visible {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+/* ----- Newsletter shimmer ----- */
+.newsletter-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+    animation: shimmer 3s infinite linear;
+}
+@keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ----- History card ----- */
+.history-card {
+    animation: hCardIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes hCardIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- Map hover ----- */
+.map-wrap iframe {
+    transition: filter 0.3s;
+    filter: saturate(0.8);
+}
+.map-wrap:hover iframe {
+    filter: saturate(1);
+}
+
+/* ----- Command Palette ----- */
+#cmd-palette.active { opacity:1; pointer-events:auto; }
+#cmd-palette .cmd-box { animation: cmdIn .25s cubic-bezier(.16,1,.3,1) forwards; }
+@keyframes cmdIn { from{opacity:0;transform:translateY(-20px) scale(.97)} to{opacity:1;transform:none} }
+.cmd-item:hover, .cmd-item.active { background:rgba(99,102,241,.08); }
+.cmd-item { transition: background .15s; }
+
+/* ----- Navbar shrink ----- */
+#navbar.shrink { padding-top:.5rem; padding-bottom:.5rem; }
+#navbar.shrink .text-xl { font-size:1.05rem; }
+
+/* ----- Chat Widget ----- */
+#chat-panel { transform:translateY(20px) scale(.95); opacity:0; pointer-events:none; transition:all .3s cubic-bezier(.16,1,.3,1); }
+#chat-panel.open { transform:none; opacity:1; pointer-events:auto; }
+.chat-msg { animation: chatMsg .3s ease forwards; }
+@keyframes chatMsg { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+/* ----- Rating Stars ----- */
+.rate-star { cursor:pointer; transition:transform .15s,color .15s; }
+.rate-star:hover { transform:scale(1.25); }
+.rate-star.selected { color:#f59e0b; }
+
+/* ----- Dashboard pulse ----- */
+.dash-dot { animation: dashPulse 2s ease-in-out infinite; }
+@keyframes dashPulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+.dash-card { transition: border-color .3s, transform .3s; }
+.dash-card:hover { border-color:rgba(99,102,241,.3); transform:translateY(-2px); }
+
+/* ----- Coverage zone cards ----- */
+.zone-card { transition: all .3s; }
+.zone-card:hover { border-color:rgba(99,102,241,.4); transform:translateY(-4px); box-shadow:0 12px 40px rgba(99,102,241,.08); }
+
+/* ----- Referral copy animation ----- */
+.ref-code-box { transition: border-color .3s; }
+.ref-code-box.copied { border-color:#10b981; }
+
+/* ----- Lang toggle ----- */
+.lang-badge { transition: all .2s; }
+.lang-badge:hover { background:rgba(99,102,241,.1); }
+
+/* ----- Confetti Canvas ----- */
+#confetti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+}
+
+/* ----- Admin / Courier Simulator Modal ----- */
+#admin-portal.active { opacity: 1; pointer-events: auto; }
+
+/* ----- SMS Notification Simulator ----- */
+.sms-notification {
+    animation: smsIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.sms-notification.sms-exit {
+    animation: smsOut 0.4s ease forwards;
+}
+@keyframes smsIn {
+    from { transform: translateY(-100px) scale(0.9); opacity: 0; }
+    to { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes smsOut {
+    from { transform: translateY(0) scale(1); opacity: 1; }
+    to { transform: translateY(-30px) scale(0.9); opacity: 0; }
+}
+
+/* ----- Live GPS Track Line ----- */
+.gps-track-line {
+    background: repeating-linear-gradient(90deg, #e2e8f0, #e2e8f0 8px, transparent 8px, transparent 16px);
+}
+.dark .gps-track-line {
+    background: repeating-linear-gradient(90deg, #334155, #334155 8px, transparent 8px, transparent 16px);
+}
+.gps-active-line {
+    background: linear-gradient(90deg, #4f46e5, #06b6d4);
+    transition: width 1s linear;
+}
+.gps-bike-icon {
+    transition: left 1s linear;
+    animation: bikeBob 0.6s ease-in-out infinite alternate;
+}
+@keyframes bikeBob {
+    from { transform: translateY(0); }
+    to { transform: translateY(-3px); }
+}
