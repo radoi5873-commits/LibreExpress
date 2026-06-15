@@ -134,11 +134,13 @@
 /* ----- Confetti Canvas ----- */
 #confetti-canvas {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     pointer-events: none;
     z-index: 99;
-    width: 100%;
-    height: 100%;
+    display: block;
 }
 
 /* ----- Admin / Courier Simulator Modal ----- */
