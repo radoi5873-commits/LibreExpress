@@ -1,3 +1,10 @@
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+    window.dispatchEvent(new CustomEvent('pwa-installable'));
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // ==========================================================================
     // 1. Core State & Mock Database
@@ -1058,41 +1065,41 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // PWA install prompt
-    let deferredInstallPrompt = null;
-    window.addEventListener('beforeinstallprompt', (e) => {
-        e.preventDefault();
-        deferredInstallPrompt = e;
+    // PWA install prompt handler
+    const showInstallPromo = () => {
+        if (deferredInstallPrompt) {
+            // Check if already displayed to avoid duplicates
+            if (document.getElementById('pwa-install-accept')) return;
 
-        // Show install toast after 5 seconds
-        setTimeout(() => {
-            if (deferredInstallPrompt) {
-                const installToast = document.createElement('div');
-                installToast.className = 'toast bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 shadow-xl flex items-center gap-3 min-w-[280px] max-w-sm';
-                installToast.innerHTML = `
-                    <i class="fas fa-download text-lg text-indigo-500"></i>
-                    <span class="text-xs font-semibold text-slate-800 dark:text-slate-200 flex-1">Installer LibreExpress ?</span>
-                    <button id="pwa-install-accept" class="px-3 py-1 bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] font-bold rounded-lg cursor-pointer">Installer</button>
-                    <button class="toast-close text-slate-400 hover:text-slate-700 dark:hover:text-white cursor-pointer text-sm">
-                        <i class="fas fa-xmark"></i>
-                    </button>
-                `;
-                if (toastContainer) {
-                    toastContainer.appendChild(installToast);
-                    document.getElementById('pwa-install-accept').addEventListener('click', () => {
-                        deferredInstallPrompt.prompt();
-                        deferredInstallPrompt = null;
-                        installToast.classList.add('toast-exit');
-                        setTimeout(() => installToast.remove(), 300);
-                    });
-                    installToast.querySelector('.toast-close').addEventListener('click', () => {
-                        installToast.classList.add('toast-exit');
-                        setTimeout(() => installToast.remove(), 300);
-                    });
-                }
+            const installToast = document.createElement('div');
+            installToast.className = 'toast bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl px-4 py-3 shadow-xl flex items-center gap-3 min-w-[280px] max-w-sm';
+            installToast.innerHTML = `
+                <i class="fas fa-download text-lg text-indigo-500"></i>
+                <span class="text-xs font-semibold text-slate-800 dark:text-slate-200 flex-1">Installer LibreExpress ?</span>
+                <button id="pwa-install-accept" class="px-3 py-1 bg-indigo-600 hover:bg-indigo-700 text-white text-[10px] font-bold rounded-lg cursor-pointer">Installer</button>
+                <button class="toast-close text-slate-400 hover:text-slate-700 dark:hover:text-white cursor-pointer text-sm">
+                    <i class="fas fa-xmark"></i>
+                </button>
+            `;
+            if (toastContainer) {
+                toastContainer.appendChild(installToast);
+                document.getElementById('pwa-install-accept').addEventListener('click', () => {
+                    deferredInstallPrompt.prompt();
+                    deferredInstallPrompt = null;
+                    installToast.classList.add('toast-exit');
+                    setTimeout(() => installToast.remove(), 300);
+                });
+                installToast.querySelector('.toast-close').addEventListener('click', () => {
+                    installToast.classList.add('toast-exit');
+                    setTimeout(() => installToast.remove(), 300);
+                });
             }
-        }, 5000);
-    });
+        }
+    };
+
+    // Show after 5 seconds if already loaded, or when the event fires
+    setTimeout(showInstallPromo, 5000);
+    window.addEventListener('pwa-installable', showInstallPromo);
 
     // ==========================================================================
     // 17. Command Palette (Ctrl+K)
