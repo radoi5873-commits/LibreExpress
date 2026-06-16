@@ -1,5 +1,15 @@
-const CACHE_NAME = 'libreexpress-v1';
-const URLS_TO_CACHE = ['/', '/index.html', '/style.css', '/script.js'];
+const CACHE_NAME = 'libreexpress-v2';
+const URLS_TO_CACHE = [
+    '/',
+    '/index.html',
+    '/style.css',
+    '/script.js',
+    '/manifest.json',
+    '/favicon.png',
+    '/apple-touch-icon.png',
+    '/icon-192.png',
+    '/icon-512.png'
+];
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
