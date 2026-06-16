@@ -74,15 +74,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (isClosed) {
             navMenu.classList.remove('hidden');
             // Animate burger to 'X'
-            burger1.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 rotate-45 translate-y-1';
-            burger2.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 opacity-0';
-            burger3.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 -rotate-45 -translate-y-1';
+            burger1.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 rotate-45 translate-y-1 transition-all duration-300';
+            burger2.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 opacity-0 transition-all duration-300';
+            burger3.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 -rotate-45 -translate-y-1 transition-all duration-300';
         } else {
             navMenu.classList.add('hidden');
             // Reset burger lines
-            burger1.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200';
-            burger2.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200';
-            burger3.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200';
+            burger1.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 transition-all duration-300';
+            burger2.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 transition-all duration-300';
+            burger3.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 transition-all duration-300';
         }
     });
 
@@ -90,9 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('#nav-menu a').forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.add('hidden');
-            burger1.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200';
-            burger2.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200';
-            burger3.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200';
+            burger1.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 transition-all duration-300';
+            burger2.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 transition-all duration-300';
+            burger3.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 transition-all duration-300';
         });
     });
 
@@ -1275,14 +1275,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     let currentLang = 'fr';
-    const langToggle = document.getElementById('lang-toggle');
+    const langToggles = document.querySelectorAll('#lang-toggle, #mobile-lang-toggle');
+    const mobileLangText = document.getElementById('mobile-lang-text');
 
-    if (langToggle) {
-        langToggle.addEventListener('click', () => {
+    langToggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
             currentLang = currentLang === 'fr' ? 'en' : 'fr';
-            langToggle.textContent = currentLang.toUpperCase();
+            
+            langToggles.forEach(t => {
+                if (t.id === 'mobile-lang-toggle' && mobileLangText) {
+                    mobileLangText.textContent = currentLang === 'fr' ? 'Langue: FR' : 'Language: EN';
+                } else {
+                    t.textContent = currentLang.toUpperCase();
+                }
+            });
+
             applyLang();
             showToast(currentLang === 'en' ? 'Switched to English' : 'Langue française activée', 'info');
+        });
+    });
+
+    const mobileHistoryBtn = document.getElementById('mobile-history-btn');
+    if (mobileHistoryBtn) {
+        mobileHistoryBtn.addEventListener('click', () => {
+            // Close mobile menu
+            navMenu.classList.add('hidden');
+            burger1.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 transition-all duration-300';
+            burger2.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 transition-all duration-300';
+            burger3.className = 'w-5 h-0.5 bg-slate-700 dark:bg-slate-200 transition-all duration-300';
+            openHistory();
         });
     }
 
@@ -1440,100 +1461,7 @@ document.addEventListener('DOMContentLoaded', () => {
         revealObserver.observe(el);
     });
 
-    // ==========================================================================
-    // 27. Synth Premium Audio SFX (Web Audio API)
-    // ==========================================================================
-    let audioEnabled = true;
-    const soundToggleBtn = document.getElementById('sound-toggle-btn');
-    const audioCtxClass = window.AudioContext || window.webkitAudioContext;
-    let audioCtx = null;
 
-    if (soundToggleBtn) {
-        soundToggleBtn.addEventListener('click', () => {
-            audioEnabled = !audioEnabled;
-            const icon = soundToggleBtn.querySelector('i');
-            if (audioEnabled) {
-                icon.className = 'fas fa-volume-up';
-                showToast('Effets sonores activés', 'info');
-                playSFX('click');
-            } else {
-                icon.className = 'fas fa-volume-mute';
-                showToast('Effets sonores désactivés', 'info');
-            }
-        });
-    }
-
-    function initAudio() {
-        if (!audioCtx && audioCtxClass) {
-            audioCtx = new audioCtxClass();
-        }
-    }
-
-    function playSFX(type) {
-        if (!audioEnabled) return;
-        initAudio();
-        if (!audioCtx) return;
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
-
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        const now = audioCtx.currentTime;
-
-        if (type === 'click') {
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(600, now);
-            osc.frequency.exponentialRampToValueAtTime(150, now + 0.08);
-            gain.gain.setValueAtTime(0.08, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
-            osc.start(now);
-            osc.stop(now + 0.08);
-        } else if (type === 'success') {
-            // Arpeggio chord (C major / G major theme)
-            const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
-            notes.forEach((freq, idx) => {
-                const noteOsc = audioCtx.createOscillator();
-                const noteGain = audioCtx.createGain();
-                noteOsc.connect(noteGain);
-                noteGain.connect(audioCtx.destination);
-                noteOsc.type = 'triangle';
-                noteOsc.frequency.setValueAtTime(freq, now + idx * 0.1);
-                noteGain.gain.setValueAtTime(0.12, now + idx * 0.1);
-                noteGain.gain.exponentialRampToValueAtTime(0.01, now + idx * 0.1 + 0.4);
-                noteOsc.start(now + idx * 0.1);
-                noteOsc.stop(now + idx * 0.1 + 0.4);
-            });
-        } else if (type === 'msg_recv') {
-            // High double pop
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(450, now);
-            osc.frequency.setValueAtTime(600, now + 0.06);
-            gain.gain.setValueAtTime(0.1, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.18);
-            osc.start(now);
-            osc.stop(now + 0.18);
-        } else if (type === 'msg_send') {
-            // Low to high slide
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(300, now);
-            osc.frequency.exponentialRampToValueAtTime(550, now + 0.12);
-            gain.gain.setValueAtTime(0.08, now);
-            gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
-            osc.start(now);
-            osc.stop(now + 0.12);
-        }
-    }
-
-    // Attach sound triggers to existing events
-    document.addEventListener('click', (e) => {
-        if (e.target.closest('button, a, input[type="radio"], input[type="checkbox"]')) {
-            playSFX('click');
-        }
-    });
 
     // ==========================================================================
     // 28. Confetti Animation (Canvas-based)
@@ -1586,7 +1514,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (animationId) cancelAnimationFrame(animationId);
         tickConfetti();
-        playSFX('success');
+
     }
 
     function tickConfetti() {
@@ -1630,7 +1558,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
         smsContainer.appendChild(sms);
-        playSFX('msg_recv');
+
 
         setTimeout(() => {
             sms.classList.add('sms-exit');
@@ -1827,12 +1755,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     };
 
-    // Trigger double pop sound on new chat messages
-    const origSendChatMsg = sendChatMsg;
-    sendChatMsg = function() {
-        origSendChatMsg();
-        playSFX('msg_send');
-        // The bot replies later:
-        setTimeout(() => playSFX('msg_recv'), 900);
-    };
+
 });

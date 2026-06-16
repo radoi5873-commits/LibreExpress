@@ -56,7 +56,7 @@ LibreExpress est une Progressive Web Application (PWA) monopage (SPA) haut de ga
    ```
    *Ou si vous préférez Python :*
    ```bash
-   python3 -m http-server 3000
+   python3 -m http.server 3000
    ```
 
 3. **Ouvrir le projet dans le navigateur** :

@@ -126,15 +126,12 @@
             <!-- Actions -->
             <div class="flex items-center gap-3">
                 <!-- Language Toggle -->
-                <button id="lang-toggle" class="lang-badge w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-extrabold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer" aria-label="Changer la langue">FR</button>
+                <button id="lang-toggle" class="lang-badge hidden md:flex w-10 h-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-extrabold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer" aria-label="Changer la langue">FR</button>
                 <!-- Order History -->
-                <button id="open-history-btn" class="w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition-all cursor-pointer" aria-label="Historique des commandes">
+                <button id="open-history-btn" class="hidden md:flex w-10 h-10 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition-all cursor-pointer" aria-label="Historique des commandes">
                     <i class="fas fa-clock-rotate-left text-sm"></i>
                 </button>
-                <!-- Sound Toggle -->
-                <button id="sound-toggle-btn" class="w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition-all cursor-pointer" aria-label="Activer/Désactiver le son">
-                    <i class="fas fa-volume-up"></i>
-                </button>
+
                 <!-- Theme toggle -->
                 <button id="theme-toggle-btn" class="w-10 h-10 flex items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-900 transition-all cursor-pointer" aria-label="Changer le thème">
                     <i class="fas fa-moon"></i>
@@ -162,6 +159,14 @@
             <button id="mobile-book-btn" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold font-heading rounded-xl shadow-lg shadow-indigo-600/20 cursor-pointer">
                 <i class="fas fa-motorcycle mr-2"></i> Commander une livraison
             </button>
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-900/50 gap-3">
+                <button id="mobile-lang-toggle" class="flex-1 py-3 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-bold text-slate-750 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+                    <i class="fas fa-globe text-indigo-500"></i> <span id="mobile-lang-text">Langue: FR</span>
+                </button>
+                <button id="mobile-history-btn" class="flex-1 py-3 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-800 rounded-xl text-sm font-bold text-slate-750 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white cursor-pointer">
+                    <i class="fas fa-clock-rotate-left text-indigo-500"></i> Historique
+                </button>
+            </div>
         </nav>
     </header>
 
@@ -181,7 +186,7 @@
                     <span class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-indigo-500/10 border border-indigo-500/20 text-indigo-600 dark:text-indigo-400 text-xs font-extrabold uppercase tracking-wider rounded-full mb-6">
                         <i class="fas fa-bolt text-cyan-550 dark:text-cyan-400 animate-pulse"></i> Livraison Ultra Rapide à Dakar
                     </span>
-                    <h1 class="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-slate-900 dark:text-white mb-6 tracking-tight">
+                    <h1 class="font-heading text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight text-slate-900 dark:text-white mb-6 tracking-tight">
                         Vos colis à Dakar,<br>
                         <span class="bg-gradient-to-r from-indigo-600 via-cyan-500 to-purple-600 dark:from-indigo-400 dark:via-cyan-400 dark:to-purple-400 bg-clip-text text-transparent">livrés en un éclair.</span>
                     </h1>
@@ -296,23 +301,23 @@
 
         <!-- Stats Section -->
         <section class="bg-white dark:bg-slate-900/40 border-y border-slate-200 dark:border-slate-900 py-12 relative overflow-hidden">
-            <div class="container mx-auto px-6 flex flex-wrap justify-between items-center gap-8 md:gap-4">
-                <div class="flex-1 min-w-[150px] text-center">
+            <div class="container mx-auto px-6 grid grid-cols-2 md:flex md:flex-row justify-between items-center gap-y-8 gap-x-4 md:gap-4">
+                <div class="text-center">
                     <div class="font-heading text-3xl md:text-4xl font-extrabold text-indigo-600 dark:text-indigo-400" id="stat-1" data-val="15">0</div>
                     <div class="text-[10px] text-slate-500 dark:text-slate-500 font-extrabold uppercase tracking-widest mt-2">Milliers de colis</div>
                 </div>
                 <div class="hidden md:block w-px h-10 bg-slate-200 dark:bg-slate-800"></div>
-                <div class="flex-1 min-w-[150px] text-center">
+                <div class="text-center">
                     <div class="font-heading text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white" id="stat-2" data-val="35">0</div>
                     <div class="text-[10px] text-slate-500 dark:text-slate-500 font-extrabold uppercase tracking-widest mt-2">Min (Temps Express)</div>
                 </div>
                 <div class="hidden md:block w-px h-10 bg-slate-200 dark:bg-slate-800"></div>
-                <div class="flex-1 min-w-[150px] text-center">
+                <div class="text-center">
                     <div class="font-heading text-3xl md:text-4xl font-extrabold text-cyan-600 dark:text-cyan-400" id="stat-3" data-val="99">0</div>
                     <div class="text-[10px] text-slate-500 dark:text-slate-500 font-extrabold uppercase tracking-widest mt-2">Satisfaction client</div>
                 </div>
                 <div class="hidden md:block w-px h-10 bg-slate-200 dark:bg-slate-800"></div>
-                <div class="flex-1 min-w-[150px] text-center">
+                <div class="text-center">
                     <div class="font-heading text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white" id="stat-4" data-val="50">0</div>
                     <div class="text-[10px] text-slate-500 dark:text-slate-500 font-extrabold uppercase tracking-widest mt-2">Coursiers actifs</div>
                 </div>
@@ -323,21 +328,21 @@
         <section id="dashboard" class="py-6 bg-slate-50 dark:bg-slate-950">
             <div class="container mx-auto px-6">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <div class="dash-card bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-900 rounded-xl p-4 flex items-center gap-3">
-                        <div class="w-9 h-9 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center text-sm"><i class="fas fa-motorcycle"></i></div>
-                        <div><div class="text-lg font-heading font-extrabold text-slate-900 dark:text-white flex items-center gap-1.5" id="dash-active">12 <span class="dash-dot w-2 h-2 rounded-full bg-emerald-500 inline-block"></span></div><div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider">En cours</div></div>
+                    <div class="dash-card bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-900 rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                        <div class="w-9 h-9 bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 rounded-lg flex items-center justify-center text-sm shrink-0"><i class="fas fa-motorcycle"></i></div>
+                        <div><div class="text-base sm:text-lg font-heading font-extrabold text-slate-900 dark:text-white flex items-center gap-1.5" id="dash-active">12 <span class="dash-dot w-2 h-2 rounded-full bg-emerald-500 inline-block"></span></div><div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider leading-tight">En cours</div></div>
                     </div>
-                    <div class="dash-card bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-900 rounded-xl p-4 flex items-center gap-3">
-                        <div class="w-9 h-9 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-lg flex items-center justify-center text-sm"><i class="fas fa-users"></i></div>
-                        <div><div class="text-lg font-heading font-extrabold text-slate-900 dark:text-white" id="dash-couriers">38</div><div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Coursiers en ligne</div></div>
+                    <div class="dash-card bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-900 rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                        <div class="w-9 h-9 bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 rounded-lg flex items-center justify-center text-sm shrink-0"><i class="fas fa-users"></i></div>
+                        <div><div class="text-base sm:text-lg font-heading font-extrabold text-slate-900 dark:text-white" id="dash-couriers">38</div><div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider leading-tight">Coursiers en ligne</div></div>
                     </div>
-                    <div class="dash-card bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-900 rounded-xl p-4 flex items-center gap-3">
-                        <div class="w-9 h-9 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg flex items-center justify-center text-sm"><i class="fas fa-box-check"></i></div>
-                        <div><div class="text-lg font-heading font-extrabold text-slate-900 dark:text-white" id="dash-today">87</div><div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Livr\u00e9s aujourd'hui</div></div>
+                    <div class="dash-card bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-900 rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                        <div class="w-9 h-9 bg-cyan-50 dark:bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 rounded-lg flex items-center justify-center text-sm shrink-0"><i class="fas fa-box-check"></i></div>
+                        <div><div class="text-base sm:text-lg font-heading font-extrabold text-slate-900 dark:text-white" id="dash-today">87</div><div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider leading-tight">Livrés aujourd'hui</div></div>
                     </div>
-                    <div class="dash-card bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-900 rounded-xl p-4 flex items-center gap-3">
-                        <div class="w-9 h-9 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-lg flex items-center justify-center text-sm"><i class="fas fa-clock"></i></div>
-                        <div><div class="text-lg font-heading font-extrabold text-slate-900 dark:text-white" id="dash-avg">28 min</div><div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider">Temps moyen</div></div>
+                    <div class="dash-card bg-white dark:bg-slate-900/30 border border-slate-200 dark:border-slate-900 rounded-xl p-3 sm:p-4 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-3">
+                        <div class="w-9 h-9 bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 rounded-lg flex items-center justify-center text-sm shrink-0"><i class="fas fa-clock"></i></div>
+                        <div><div class="text-base sm:text-lg font-heading font-extrabold text-slate-900 dark:text-white" id="dash-avg">28 min</div><div class="text-[9px] text-slate-500 font-bold uppercase tracking-wider leading-tight">Temps moyen</div></div>
                     </div>
                 </div>
             </div>
@@ -962,11 +967,11 @@
                             </div>
                             <div class="flex justify-between text-xs text-slate-500 dark:text-slate-400">
                                 <span>Colis :</span>
-                                <strong id="sum-package" class="text-white">Petit colis (Documents)</strong>
+                                <strong id="sum-package" class="text-slate-900 dark:text-white">Petit colis (Documents)</strong>
                             </div>
                             <div class="flex justify-between text-xs text-slate-500 dark:text-slate-400">
                                 <span>Délai :</span>
-                                <strong id="sum-service" class="text-white">Standard</strong>
+                                <strong id="sum-service" class="text-slate-900 dark:text-white">Standard</strong>
                             </div>
                             <div class="h-px bg-indigo-100 dark:bg-indigo-500/10 my-2"></div>
                             <div class="flex justify-between items-center text-sm font-bold text-slate-800 dark:text-white">
@@ -1070,7 +1075,7 @@
                 <li class="cmd-item flex items-center gap-3 px-5 py-2.5 cursor-pointer" data-action="history"><i class="fas fa-clock-rotate-left text-slate-500 w-5 text-center"></i><span class="text-sm text-slate-700 dark:text-slate-300">Historique des commandes</span></li>
                 <li class="cmd-item flex items-center gap-3 px-5 py-2.5 cursor-pointer" data-action="theme"><i class="fas fa-moon text-amber-500 w-5 text-center"></i><span class="text-sm text-slate-700 dark:text-slate-300">Changer le thème</span></li>
             </ul>
-            <div class="px-5 py-2.5 border-t border-slate-200 dark:border-slate-800 flex items-center gap-4 text-[10px] text-slate-400">
+            <div class="hidden sm:flex px-5 py-2.5 border-t border-slate-200 dark:border-slate-800 items-center gap-4 text-[10px] text-slate-400">
                 <span><kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[9px] mr-1">↑↓</kbd> Naviguer</span>
                 <span><kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[9px] mr-1">↵</kbd> Sélectionner</span>
                 <span><kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded text-[9px] mr-1">Ctrl+K</kbd> Ouvrir</span>
@@ -1079,7 +1084,7 @@
     </div>
 
     <!-- Live Chat Widget -->
-    <div id="chat-panel" class="fixed bottom-24 right-6 w-80 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl z-[45] overflow-hidden">
+    <div id="chat-panel" class="fixed bottom-24 right-6 w-[calc(100%-3rem)] sm:w-80 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-2xl z-[45] overflow-hidden">
         <div class="bg-indigo-600 px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-2"><div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center text-white text-sm"><i class="fas fa-headset"></i></div><div><div class="text-sm font-bold text-white">Support</div><div class="text-[9px] text-indigo-200 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>En ligne</div></div></div>
             <button id="close-chat" class="text-white/70 hover:text-white cursor-pointer"><i class="fas fa-xmark"></i></button>
