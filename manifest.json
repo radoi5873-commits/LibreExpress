@@ -2,7 +2,7 @@
   "name": "LibreExpress - Livraison express à Dakar",
   "short_name": "LibreExpress",
   "description": "Réservez un coursier, estimez vos tarifs et suivez votre colis en temps réel à Dakar.",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#4f46e5",
