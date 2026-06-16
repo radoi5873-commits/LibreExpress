@@ -1,4 +1,5 @@
 {
+  "id": "com.libreexpress.app",
   "name": "LibreExpress - Livraison express à Dakar",
   "short_name": "LibreExpress",
   "description": "Réservez un coursier, estimez vos tarifs et suivez votre colis en temps réel à Dakar.",
@@ -7,6 +8,7 @@
   "background_color": "#020617",
   "theme_color": "#4f46e5",
   "orientation": "portrait-primary",
+  "prefer_related_applications": false,
   "icons": [
     {
       "src": "icon-192.png",
