@@ -79,3 +79,4 @@ LibreExpress est une Progressive Web Application (PWA) monopage (SPA) haut de ga
 
 ## 🛡️ Raccourci Clavier Utile
 * Appuyez sur **`Ctrl + K`** (ou `Cmd + K` sur macOS) à tout moment pour ouvrir la **Command Palette** et naviguer instantanément à travers les différentes sections ou ouvrir le **Portail Admin / Coursier**.
+# LibreExpress
